@@ -3,7 +3,7 @@ cd /tmp/rom # Depends on where source got synced
 
 # Normal build steps
 . build/envsetup.sh
-lunch cherish_begonia-user
+lunch lineage_begonia-user
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
@@ -45,12 +45,6 @@ id=1424391949 # Your telegram id
 # Upload rom zip file if succeed to build! Send notification to tg! And send shell to tg if build fails!
 
 # Let's compile by parts! Coz of ram issue!
-#make bacon || echo no problem && up /tmp/rom/out/soong/soong.variables && up tmp/rom/out/soong/build.ninja
-#make system-api-stubs-docs || echo no problem
-#make test-api-stubs-docs || echo no problem
-
-make bacon -j10 \
-	&& send_zip=$(up out/target/product/begonia/*zip) && tg $id "Build Succeed!
-$send_zip" \
-	|| tmate -S /tmp/tmate.sock new-session -d && tmate -S /tmp/tmate.sock wait tmate-ready && send_shell=$(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}') && tg $id "Build Failed" && tg $id "$send_shell" && ccache -s && sleep 2h
-ccache -s # Let's print ccache statistics finally
+make init
+make bootimage
+make sepolicy
