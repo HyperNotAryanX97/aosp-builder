@@ -48,3 +48,7 @@ id=1424391949 # Your telegram id
 make init
 make bootimage
 make sepolicy
+make recoveryimage
+make aapt
+make dtboimage
+make bacon
