@@ -45,10 +45,7 @@ id=1424391949 # Your telegram id
 # Upload rom zip file if succeed to build! Send notification to tg! And send shell to tg if build fails!
 
 # Let's compile by parts! Coz of ram issue!
-make init
 make bootimage
 make sepolicy
-make recoveryimage
-make aapt
 make dtboimage
 make bacon
